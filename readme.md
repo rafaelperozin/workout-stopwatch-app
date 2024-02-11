@@ -4,6 +4,12 @@ The Workout Stopwatch App is designed for fitness enthusiasts and trainers who w
 
 **STACK**: Java, Android SDK/Android Studio, Gson, JSON, XML
 
+## App Screens
+
+![Screen 1: Start a new Session](https://github.com/rafaelperozin/workout-stopwatch-app/blob/main/readme/screen1.png)
+![Screen 2: Give a break, use rest button](https://github.com/rafaelperozin/workout-stopwatch-app/blob/main/readme/screen2.png)
+![Screen 3: Continue the workout](https://github.com/rafaelperozin/workout-stopwatch-app/blob/main/readme/screen3.png)
+
 ## Core Features
 
 ### Stopwatch Functionality [DONE]
