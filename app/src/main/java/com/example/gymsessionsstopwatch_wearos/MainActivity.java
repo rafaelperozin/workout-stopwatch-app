@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -87,6 +88,7 @@ public class MainActivity extends Activity {
     private void startStopwatch() {
         if (!isStopwatchRunning) {
             sessionManager.createNewSession();
+            allowScreenToSleep(SleepOptions.ON);
         } else {
             saveBlockOnSession(WorkoutSession.SessionActivityType.ACTIVITY);
             setOldStopwatch();
@@ -105,6 +107,7 @@ public class MainActivity extends Activity {
     private void startNewSession() {
         isStopwatchRunning = false;
         clearOldStopwatch();
+        allowScreenToSleep(SleepOptions.OFF);
     }
 
     private long getTimedTime() {
@@ -113,7 +116,7 @@ public class MainActivity extends Activity {
     }
 
     private void setOldStopwatch() {
-        String prevTimedTime = WorkoutSessionManager.getLatestStopwatch();
+        String prevTimedTime = WorkoutSessionManager.Companion.getLatestStopwatch(this);
         oldStopwatchDisplay.setText(prevTimedTime);
         oldStopwatchDisplay.setVisibility(View.VISIBLE);
     }
@@ -121,6 +124,19 @@ public class MainActivity extends Activity {
     private void clearOldStopwatch() {
         oldStopwatchDisplay.setText(DEFAULT_TIME);
         oldStopwatchDisplay.setVisibility(View.GONE);
+    }
+
+    private enum SleepOptions {
+        ON, OFF
+    }
+
+    private void allowScreenToSleep(SleepOptions value) {
+        if (value == SleepOptions.ON) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+
     }
 
     private void saveBlockOnSession(WorkoutSession.SessionActivityType type) {
