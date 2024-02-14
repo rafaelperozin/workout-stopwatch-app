@@ -34,7 +34,7 @@ class WorkoutSessionManager(context: Context) {
         private const val DEFAULT_TIME = "0:00:00"
 
         fun getAllSessions(context: Context): List<WorkoutSession> {
-            return LocalFileManager.loadSessionFromFile(context) ?: listOf()
+            return LocalFileManager.loadSessionsFromFile(context) ?: listOf()
         }
 
         private fun getLatestBlock(context: Context): WorkoutSession.SessionBlock? {
